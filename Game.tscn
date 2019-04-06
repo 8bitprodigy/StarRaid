@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://cockpit.png" type="Texture" id=2]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Player" type="Spatial" parent="."]
+script = ExtResource( 1 )
+
+[node name="Camera" type="Camera" parent="Player"]
+current = true
+
+[node name="Cockpit" type="Sprite3D" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.221551, -0.433829 )
+texture = ExtResource( 2 )
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 0.768087, 0.438917, -0.466255, -0.606349, 0.732618, -0.30921, 0.205869, 0.520214, 0.828852, 4.44453, 0, -36.1283 )
+
