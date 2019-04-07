@@ -42,9 +42,8 @@ func _process(delta):
 			var bullet = projectile.instance()
 			bullet.translation = to_global(target)
 			bullet.rotation = rotation
-			bullet.velocity = to_global(Vector3(0, 0, -1))
-
 			$"..".add_child(bullet)
+			bullet.velocity = -bullet.global_transform.basis.z;
 			
 			fire_delay = 0.2 # .2 seconds // the default
 		else:

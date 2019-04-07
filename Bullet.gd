@@ -1,7 +1,8 @@
 extends KinematicBody
 
-var life = 10 # in seconds
-var velocity = Vector3(0, 0, -1)
+var life = 5 # in seconds
+var velocity = Vector3(0, 0, 0)
+const SPEED = 5
 
 func _ready():
 	set_process(true)
@@ -13,5 +14,4 @@ func _process(delta):
 		queue_free()
 
 func _physics_process(delta):
-	#translate_object_local(velocity * delta)
-	var collision = move_and_collide(velocity)
+	var collision = move_and_collide(velocity * SPEED)
