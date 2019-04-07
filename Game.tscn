@@ -6,15 +6,26 @@
 [node name="Spatial" type="Spatial"]
 
 [node name="Player" type="Spatial" parent="."]
+transform = Transform( 0.795369, 0, 0.606125, 0, 1, 0, -0.606125, 0, 0.795369, 50.742, 3.55369, 53.9719 )
 script = ExtResource( 1 )
 
 [node name="Camera" type="Camera" parent="Player"]
 current = true
+far = 1000.0
 
 [node name="Cockpit" type="Sprite3D" parent="Player"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.221551, -0.433829 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.221551, -0.858129 )
 texture = ExtResource( 2 )
 
 [node name="CSGBox" type="CSGBox" parent="."]
-transform = Transform( 0.768087, 0.438917, -0.466255, -0.606349, 0.732618, -0.30921, 0.205869, 0.520214, 0.828852, 4.44453, 0, -36.1283 )
+transform = Transform( 0.768087, 0.438917, -0.466255, -0.606349, 0.732618, -0.30921, 0.205869, 0.520214, 0.828852, 4.44453, 0, -17.1164 )
+use_collision = true
+height = 19.6867
+depth = 12.5305
+
+[node name="CSGBox2" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.2686, 0 )
+width = 500.0
+height = 1.0
+depth = 500.0
 

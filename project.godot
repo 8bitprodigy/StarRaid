@@ -17,7 +17,13 @@ _global_script_class_icons={
 
 config/name="StarRaid"
 run/main_scene="res://Game.tscn"
+boot_splash/image="res://foobar.png"
+boot_splash/bg_color=Color( 1, 1, 1, 1 )
 config/icon="res://icon.png"
+
+[debug]
+
+settings/stdout/print_fps=true
 
 [importer_defaults]
 
@@ -81,7 +87,9 @@ roll_left={
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
+quality/driver/fallback_to_gles2=true
+quality/2d/use_pixel_snap=true
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
+quality/filters/use_nearest_mipmap_filter=true
 environment/default_environment="res://default_env.tres"
