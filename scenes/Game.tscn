@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://graphics/cockpit.png" type="Texture" id=2]
-[ext_resource path="res://audio/cockpit.ogg" type="AudioStream" id=3]
+[ext_resource path="res://audio/gatling_fire_high_rate.ogg" type="AudioStream" id=3]
+[ext_resource path="res://audio/cockpit.ogg" type="AudioStream" id=4]
 
 [node name="Spatial" type="Spatial"]
 
@@ -24,6 +25,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -0.25, 0.35 )
 [node name="Left" type="Position3D" parent="Player"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -0.25, 0.35 )
 
+[node name="GunFireCockpitAudio" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource( 3 )
+volume_db = -15.0
+
 [node name="CSGBox" type="CSGBox" parent="."]
 transform = Transform( 0.768087, 0.438917, -0.466255, -0.606349, 0.732618, -0.30921, 0.205869, 0.520214, 0.828852, 4.44453, 0, -17.1164 )
 use_collision = true
@@ -37,7 +42,7 @@ height = 1.0
 depth = 500.0
 
 [node name="CockpitAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
+stream = ExtResource( 4 )
 volume_db = -20.0
 autoplay = true
 

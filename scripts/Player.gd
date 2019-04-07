@@ -45,6 +45,12 @@ func _process(delta):
 			$"..".add_child(bullet)
 			bullet.velocity = -bullet.global_transform.basis.z;
 			
-			fire_delay = 0.1 # in seconds
+			fire_delay = 0.05 # in seconds
 		else:
 			fire_delay -= delta
+		
+		if not $GunFireCockpitAudio.playing:
+			$GunFireCockpitAudio.play()
+	else:
+		if $GunFireCockpitAudio.playing:
+			$GunFireCockpitAudio.stop()
