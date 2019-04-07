@@ -1,7 +1,7 @@
 extends KinematicBody
 
 var life = 5 # in seconds
-var velocity = Vector3(0, 0, 0)
+var velocity: Vector3
 const SPEED = 10
 
 func _ready():
@@ -15,3 +15,5 @@ func _process(delta):
 
 func _physics_process(delta):
 	var collision = move_and_collide(velocity * SPEED)
+	if collision != null:
+		print("Bullet traveled")
