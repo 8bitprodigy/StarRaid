@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/gatling_fire_high_rate.ogg-0dab46efbd1952fa9da72de7b228c9f7.oggstr"
+
+[deps]
+
+source_file="res://audio/gatling_fire_high_rate.ogg"
+dest_files=[ "res://.import/gatling_fire_high_rate.ogg-0dab46efbd1952fa9da72de7b228c9f7.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

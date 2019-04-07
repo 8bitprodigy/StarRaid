@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cockpit.png-706e9cdaea3d7f2271605cbcf02c9bed.stex"
+path="res://.import/foobar.png-ef3900205b545c13667c4cb2dc427253.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://cockpit.png"
-dest_files=[ "res://.import/cockpit.png-706e9cdaea3d7f2271605cbcf02c9bed.stex" ]
+source_file="res://graphics/foobar.png"
+dest_files=[ "res://.import/foobar.png-ef3900205b545c13667c4cb2dc427253.stex" ]
 
 [params]
 

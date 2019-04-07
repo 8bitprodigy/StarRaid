@@ -5,9 +5,9 @@ var pitch_add = 1
 var roll_add = 1
 var yaw_add = 0
 
-onready var projectile = preload("res://Bullet.tscn")
+onready var projectile = preload("res://scenes/Bullet.tscn")
 
-var fire_delay = 0 # in seconds
+var fire_delay = 0 # Do not change this one
 var next_is_right = true
 
 func _ready():
@@ -45,6 +45,6 @@ func _process(delta):
 			$"..".add_child(bullet)
 			bullet.velocity = -bullet.global_transform.basis.z;
 			
-			fire_delay = 0.2 # .2 seconds // the default
+			fire_delay = 0.1 # in seconds
 		else:
 			fire_delay -= delta

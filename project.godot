@@ -16,8 +16,8 @@ _global_script_class_icons={
 [application]
 
 config/name="StarRaid"
-run/main_scene="res://Game.tscn"
-boot_splash/image="res://foobar.png"
+run/main_scene="res://scenes/Game.tscn"
+boot_splash/image="res://graphics/foobar.png"
 boot_splash/bg_color=Color( 1, 1, 1, 1 )
 config/icon="res://icon.png"
 
