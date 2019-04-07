@@ -25,6 +25,16 @@ config/icon="res://icon.png"
 
 settings/stdout/print_fps=true
 
+[display]
+
+window/size/width=384
+window/size/height=216
+window/size/resizable=false
+window/size/borderless=true
+window/size/fullscreen=true
+window/stretch/mode="2d"
+window/stretch/aspect="keep_width"
+
 [importer_defaults]
 
 texture={
@@ -102,7 +112,6 @@ yaw_left={
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
 quality/driver/fallback_to_gles2=true
 quality/2d/use_pixel_snap=true
 vram_compression/import_etc=true

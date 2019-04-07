@@ -58,3 +58,4 @@ func _process(delta):
 	else:
 		if $GunFireCockpitAudio.playing:
 			$GunFireCockpitAudio.stop()
+

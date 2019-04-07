@@ -1,9 +1,23 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://graphics/cockpit.png" type="Texture" id=2]
 [ext_resource path="res://audio/gatling_fire_high_rate.ogg" type="AudioStream" id=3]
 [ext_resource path="res://audio/cockpit.ogg" type="AudioStream" id=4]
+
+[sub_resource type="ViewportTexture" id=1]
+flags = 5
+viewport_path = NodePath("Player/Viewport")
+
+[sub_resource type="SpatialMaterial" id=2]
+resource_local_to_scene = true
+flags_unshaded = true
+flags_albedo_tex_force_srgb = true
+albedo_texture = SubResource( 1 )
+
+[sub_resource type="QuadMesh" id=3]
+material = SubResource( 2 )
+size = Vector2( 0.3, 0.2 )
 
 [node name="Spatial" type="Spatial"]
 
@@ -17,6 +31,7 @@ far = 1000.0
 
 [node name="Cockpit" type="Sprite3D" parent="Player"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.221551, -0.858129 )
+double_sided = false
 texture = ExtResource( 2 )
 
 [node name="Right" type="Position3D" parent="Player"]
@@ -28,6 +43,28 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -0.25, 0.35 )
 [node name="GunFireCockpitAudio" type="AudioStreamPlayer" parent="Player"]
 stream = ExtResource( 3 )
 volume_db = -15.0
+
+[node name="TargetingMesh" type="MeshInstance" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100899, 0.0417774, -0.861305 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="Viewport" type="Viewport" parent="Player"]
+size = Vector2( 180, 180 )
+transparent_bg = true
+usage = 0
+render_target_v_flip = true
+
+[node name="GUI" type="Control" parent="Player/Viewport"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="Player/Viewport/GUI"]
+margin_left = 44.0
+margin_top = 27.0
+margin_right = 121.0
+margin_bottom = 41.0
+text = "Hello world!"
 
 [node name="CSGBox" type="CSGBox" parent="."]
 transform = Transform( 0.768087, 0.438917, -0.466255, -0.606349, 0.732618, -0.30921, 0.205869, 0.520214, 0.828852, 4.44453, 0, -17.1164 )
