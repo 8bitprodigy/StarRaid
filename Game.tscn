@@ -17,6 +17,12 @@ far = 1000.0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.221551, -0.858129 )
 texture = ExtResource( 2 )
 
+[node name="Right" type="Position3D" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0 )
+
+[node name="Left" type="Position3D" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0 )
+
 [node name="CSGBox" type="CSGBox" parent="."]
 transform = Transform( 0.768087, 0.438917, -0.466255, -0.606349, 0.732618, -0.30921, 0.205869, 0.520214, 0.828852, 4.44453, 0, -17.1164 )
 use_collision = true
