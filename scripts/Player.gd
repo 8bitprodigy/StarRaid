@@ -1,6 +1,9 @@
 extends Spatial
 
-var speed = 20 # Pretty fast -- this is about 100 mph
+const MAX_SPEED = 100
+const ENGINE_VOLUME = -10
+
+var speed = 40 # currently in meters per second
 var pitch_add = 1
 var roll_add = 2
 var yaw_add = 0.2
@@ -31,8 +34,9 @@ func _process(delta):
 	if Input.is_action_pressed("yaw_left"):
 		rotate_object_local(Vector3(0,1,0), yaw_add * delta)
 	
-	# Volume of engine based on speed TODO
-	#$CockpitAudio.volume_db = speed
+	# Volume of engine based on throttle TODO
+#	var amt = ENGINE_VOLUME / max(speed / MAX_SPEED, .05)
+#	$CockpitAudio.volume_db = amt
 	
 	# Move
 	translate_object_local(Vector3(0, 0, -speed * delta))
