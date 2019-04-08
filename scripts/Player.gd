@@ -31,6 +31,9 @@ func _process(delta):
 	if Input.is_action_pressed("yaw_left"):
 		rotate_object_local(Vector3(0,1,0), yaw_add * delta)
 	
+	# Volume of engine based on speed TODO
+	#$CockpitAudio.volume_db = speed
+	
 	# Move
 	translate_object_local(Vector3(0, 0, -speed * delta))
 	
@@ -58,4 +61,7 @@ func _process(delta):
 	else:
 		if $GunFireCockpitAudio.playing:
 			$GunFireCockpitAudio.stop()
+	
+	# Update HUD
+	$"Viewport/GUI/Speed".text = str(speed) + "m/s"
 
