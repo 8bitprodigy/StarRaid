@@ -53,11 +53,6 @@ autoplay = true
 stream = ExtResource( 4 )
 volume_db = -15.0
 
-[node name="TargetingMesh" type="MeshInstance" parent="Player"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100899, 0.0417774, -0.861305 )
-mesh = SubResource( 3 )
-material/0 = null
-
 [node name="Viewport" type="Viewport" parent="Player"]
 size = Vector2( 180, 180 )
 transparent_bg = true
@@ -81,6 +76,11 @@ margin_bottom = 19.0
 custom_fonts/font = ExtResource( 6 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "100 m/s"
+
+[node name="TargetingMesh" type="MeshInstance" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100899, 0.0417774, -0.861305 )
+mesh = SubResource( 3 )
+material/0 = null
 
 [node name="CSGBox" type="CSGBox" parent="."]
 transform = Transform( 0.768087, 0.438917, -0.466255, -0.606349, 0.732618, -0.30921, 0.205869, 0.520214, 0.828852, 4.44453, 0, -17.1164 )
