@@ -1,8 +1,9 @@
 extends KinematicBody
 
+const SPEED = 10
+
 var life = 5 # in seconds
 var velocity: Vector3
-const SPEED = 10
 
 func _ready():
 	set_process(true)

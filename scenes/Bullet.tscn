@@ -8,12 +8,12 @@ albedo_color = Color( 0.996078, 1, 0.32549, 1 )
 
 [sub_resource type="CapsuleMesh" id=2]
 material = SubResource( 1 )
-radius = 0.02
-mid_height = 0.25
+radius = 0.03
+mid_height = 0.5
 rings = 1
 
 [sub_resource type="BoxShape" id=3]
-extents = Vector3( 0.0169174, 0.0156061, 0.144021 )
+extents = Vector3( 0.025832, 0.0272542, 0.277069 )
 
 [node name="KinematicBody" type="KinematicBody"]
 collision_layer = 2
