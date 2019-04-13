@@ -19,7 +19,7 @@ params_grow = true
 params_grow_amount = 0.02
 metallic_specular = 0.0
 
-[sub_resource type="ViewportTexture" id=4]
+[sub_resource type="ViewportTexture" id=2]
 viewport_path = NodePath("cockpit/HUD")
 
 [sub_resource type="SpatialMaterial" id=3]
@@ -27,9 +27,9 @@ resource_local_to_scene = true
 flags_transparent = true
 flags_unshaded = true
 flags_albedo_tex_force_srgb = true
-albedo_texture = SubResource( 4 )
+albedo_texture = SubResource( 2 )
 
-[sub_resource type="QuadMesh" id=2]
+[sub_resource type="QuadMesh" id=4]
 resource_local_to_scene = true
 material = SubResource( 3 )
 size = Vector2( 0.3, 0.2 )
@@ -75,7 +75,7 @@ pixel_size = 0.005
 texture = ExtResource( 6 )
 
 [node name="throttle" type="MeshInstance" parent="cockpit"]
-transform = Transform( 1, 0, -1.32349e-023, 0, 1, 0, 1.32349e-023, 0, 1, -0.6, -0.5, -0.2 )
+transform = Transform( 1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, -0.6, -0.5, -0.2 )
 mesh = ExtResource( 7 )
 material/0 = null
 
@@ -97,7 +97,7 @@ near = 0.1
 
 [node name="TargetingMesh" type="MeshInstance" parent="cockpit"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.173177, -0.93669 )
-mesh = SubResource( 2 )
+mesh = SubResource( 4 )
 material/0 = null
 
 [node name="CockpitAudio" type="AudioStreamPlayer" parent="."]

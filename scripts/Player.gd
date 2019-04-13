@@ -4,6 +4,7 @@ const MAX_SPEED = 100
 const ENGINE_VOLUME = -10
 
 var speed = 40 # currently in meters per second
+var throttle = 50 # out of 100
 var pitch_add = 1
 var roll_add = 2
 var yaw_add = 0.2
@@ -18,9 +19,11 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_pressed("speed_up"):
-		speed += 1
+		#speed += 1
+		set_throttle(speed + 1)
 	if Input.is_action_pressed("speed_down"):
-		speed -= 1
+		#speed -= 1
+		set_throttle(speed - 1)
 	if Input.is_action_pressed("pitch_up"):
 		rotate_object_local(Vector3(1,0,0), pitch_add * delta)
 	if Input.is_action_pressed("pitch_down"):
@@ -39,6 +42,7 @@ func _process(delta):
 #	$CockpitAudio.volume_db = amt
 	
 	# Move
+	
 	translate_object_local(Vector3(0, 0, -speed * delta))
 	
 	if Input.is_action_pressed("fire"):
@@ -67,8 +71,6 @@ func _process(delta):
 			$GunfireAudio.stop()
 	
 	if Input.is_mouse_button_pressed(BUTTON_RIGHT): # right mouse = zoom in
-		#$cockpit/yaw/Camera.fov = 35
-		# lerp down to 35 at rate of delta
 		$cockpit/yaw/Camera.fov = lerp($cockpit/yaw/Camera.fov, 35, delta * 10)
 	else:
 		if $cockpit/yaw/Camera.fov != 90:
@@ -76,4 +78,10 @@ func _process(delta):
 	
 	# Update HUD
 	$"cockpit/HUD/GUI/Speed".text = str(speed) + "m/s"
+
+func set_throttle(val):
+	if val <= 100 and val >= 0:
+		speed = val
+		$cockpit/throttle.rotation_degrees.x = 60.0 + (-10.0 - 60.0) * (val / 100.0)
+
 
