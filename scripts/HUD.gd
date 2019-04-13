@@ -16,9 +16,9 @@ func _draw():
 	# Roll gyroscope
 	var top = Vector2(0, -50)
 	var bottom = Vector2(0, 50)
-	var roll_rot = $"../../".rotation.z
-	top = top.rotated(roll_rot)
-	bottom = bottom.rotated(roll_rot)
+	var roll_rot = $"../../../".rotation.z
+	top = top.rotated(roll_rot - deg2rad(90))
+	bottom = bottom.rotated(roll_rot - deg2rad(90))
 	draw_line(Vector2(top.x + (d.x/2), top.y + 50 + (180-100)/2), Vector2(bottom.x + (d.x/2), bottom.y + 50 + (180-100)/2), Color.green, 3)
 
 func draw_x(tl: Vector2, br: Vector2):

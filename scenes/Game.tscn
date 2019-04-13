@@ -1,86 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://graphics/cockpit.png" type="Texture" id=2]
-[ext_resource path="res://audio/cockpit.ogg" type="AudioStream" id=3]
-[ext_resource path="res://audio/gatling_fire_high_rate.ogg" type="AudioStream" id=4]
-[ext_resource path="res://scenes/HUD.gd" type="Script" id=5]
-[ext_resource path="res://hud_font.tres" type="DynamicFont" id=6]
-
-[sub_resource type="ViewportTexture" id=1]
-flags = 1
-viewport_path = NodePath("Player/Viewport")
-
-[sub_resource type="SpatialMaterial" id=2]
-resource_local_to_scene = true
-flags_transparent = true
-flags_unshaded = true
-flags_albedo_tex_force_srgb = true
-albedo_texture = SubResource( 1 )
-
-[sub_resource type="QuadMesh" id=3]
-resource_local_to_scene = true
-material = SubResource( 2 )
-size = Vector2( 0.3, 0.2 )
+[ext_resource path="res://scenes/Cockpit.tscn" type="PackedScene" id=1]
 
 [node name="Spatial" type="Spatial"]
-
-[node name="Player" type="Spatial" parent="."]
-transform = Transform( 0.795369, 0, 0.606125, 0, 1, 0, -0.606125, 0, 0.795369, 50.742, 3.55369, 53.9719 )
-script = ExtResource( 1 )
-
-[node name="Camera" type="Camera" parent="Player"]
-current = true
-far = 1000.0
-
-[node name="Cockpit" type="Sprite3D" parent="Player"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.221551, -0.858129 )
-double_sided = false
-texture = ExtResource( 2 )
-
-[node name="Right" type="Position3D" parent="Player"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -0.25, 0.35 )
-
-[node name="Left" type="Position3D" parent="Player"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -0.25, 0.35 )
-
-[node name="CockpitAudio" type="AudioStreamPlayer" parent="Player"]
-stream = ExtResource( 3 )
-volume_db = -20.0
-autoplay = true
-
-[node name="GunFireCockpitAudio" type="AudioStreamPlayer" parent="Player"]
-stream = ExtResource( 4 )
-volume_db = -15.0
-
-[node name="Viewport" type="Viewport" parent="Player"]
-size = Vector2( 180, 180 )
-transparent_bg = true
-hdr = false
-disable_3d = true
-usage = 1
-render_target_v_flip = true
-gui_disable_input = true
-
-[node name="GUI" type="Control" parent="Player/Viewport"]
-margin_right = 40.0
-margin_bottom = 40.0
-mouse_filter = 1
-script = ExtResource( 5 )
-
-[node name="Speed" type="Label" parent="Player/Viewport/GUI"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 82.0
-margin_bottom = 19.0
-custom_fonts/font = ExtResource( 6 )
-custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "100 m/s"
-
-[node name="TargetingMesh" type="MeshInstance" parent="Player"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100899, 0.0417774, -0.861305 )
-mesh = SubResource( 3 )
-material/0 = null
 
 [node name="CSGBox" type="CSGBox" parent="."]
 transform = Transform( 0.768087, 0.438917, -0.466255, -0.606349, 0.732618, -0.30921, 0.205869, 0.520214, 0.828852, 4.44453, 0, -17.1164 )
@@ -93,4 +15,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.2686, 0 )
 width = 500.0
 height = 1.0
 depth = 500.0
+
+[node name="Cockpit" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0403308, 0.125661, -0.0883376 )
 

@@ -60,12 +60,20 @@ func _process(delta):
 		else:
 			fire_delay -= delta
 		
-		if not $GunFireCockpitAudio.playing:
-			$GunFireCockpitAudio.play()
+		if not $GunfireAudio.playing:
+			$GunfireAudio.play()
 	else:
-		if $GunFireCockpitAudio.playing:
-			$GunFireCockpitAudio.stop()
+		if $GunfireAudio.playing:
+			$GunfireAudio.stop()
+	
+	if Input.is_mouse_button_pressed(BUTTON_RIGHT): # right mouse = zoom in
+		#$cockpit/yaw/Camera.fov = 35
+		# lerp down to 35 at rate of delta
+		$cockpit/yaw/Camera.fov = lerp($cockpit/yaw/Camera.fov, 35, delta * 10)
+	else:
+		if $cockpit/yaw/Camera.fov != 90:
+			$cockpit/yaw/Camera.fov = lerp($cockpit/yaw/Camera.fov, 90, delta * 10)
 	
 	# Update HUD
-	$"Viewport/GUI/Speed".text = str(speed) + "m/s"
+	$"cockpit/HUD/GUI/Speed".text = str(speed) + "m/s"
 
