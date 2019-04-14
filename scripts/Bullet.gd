@@ -24,4 +24,6 @@ func _physics_process(delta):
 			velocity = velocity.bounce(collision.normal) / 2
 			# update rotation
 			# look_at(velocity, Vector3(0, 1, 0)) TODO: make this work
+		else:
+			queue_free()
 		print("Bullet traveled")

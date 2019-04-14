@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://graphics/cockpit/cockpit.mesh" type="ArrayMesh" id=2]
@@ -8,9 +8,10 @@
 [ext_resource path="res://graphics/cockpit/sprites/joystick.png" type="Texture" id=6]
 [ext_resource path="res://graphics/cockpit/throttle.mesh" type="ArrayMesh" id=7]
 [ext_resource path="res://graphics/cockpit/windscreen.mesh" type="ArrayMesh" id=8]
-[ext_resource path="res://scenes/HUDViewport.tscn" type="PackedScene" id=9]
-[ext_resource path="res://audio/cockpit.ogg" type="AudioStream" id=10]
-[ext_resource path="res://audio/gatling_fire_high_rate.ogg" type="AudioStream" id=11]
+[ext_resource path="res://scripts/Camera.gd" type="Script" id=9]
+[ext_resource path="res://scenes/HUDViewport.tscn" type="PackedScene" id=10]
+[ext_resource path="res://audio/cockpit.ogg" type="AudioStream" id=11]
+[ext_resource path="res://audio/gatling_fire_high_rate.ogg" type="AudioStream" id=12]
 
 [sub_resource type="SpatialMaterial" id=1]
 flags_transparent = true
@@ -85,15 +86,17 @@ mesh = ExtResource( 8 )
 material/0 = null
 
 [node name="yaw" type="Spatial" parent="cockpit"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0.5 )
 
 [node name="Camera" type="Camera" parent="cockpit/yaw"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0.7 )
 keep_aspect = 0
 current = true
 fov = 90.0
 near = 0.1
+far = 1000.0
+script = ExtResource( 9 )
 
-[node name="HUD" parent="cockpit" instance=ExtResource( 9 )]
+[node name="HUD" parent="cockpit" instance=ExtResource( 10 )]
 
 [node name="TargetingMesh" type="MeshInstance" parent="cockpit"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.173177, -0.93669 )
@@ -101,12 +104,12 @@ mesh = SubResource( 4 )
 material/0 = null
 
 [node name="CockpitAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 10 )
+stream = ExtResource( 11 )
 volume_db = -20.0
 autoplay = true
 
 [node name="GunfireAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 11 )
+stream = ExtResource( 12 )
 volume_db = -15.0
 
 [node name="Right" type="Position3D" parent="."]
