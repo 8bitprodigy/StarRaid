@@ -58,7 +58,7 @@ func _process(delta):
 			bullet.translation = to_global(target)
 			bullet.rotation = rotation
 			$"..".add_child(bullet)
-			bullet.velocity = -bullet.global_transform.basis.z;
+			bullet.velocity = Vector3(0, 0, -speed * delta) - bullet.global_transform.basis.z;
 			
 			fire_delay = 0.05 # in seconds
 		else:
