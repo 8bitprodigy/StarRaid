@@ -76,7 +76,12 @@ func set_throttle(val):
 		speed = val
 		$cockpit/throttle.rotation_degrees.x = 60.0 + (-10.0 - 60.0) * (val / 100.0)
 		# Volume of engine based on throttle TODO
-		# var amt = ENGINE_VOLUME / max(speed / MAX_SPEED, .05)
-		# $CockpitAudio.volume_db = amt
+		#var amt = ENGINE_VOLUME / max(speed / MAX_SPEED, .05)
+		# min: -30
+		# max: -20
+		# dif = 10
+#		var amt = 30 + 20 * (val / 100.0)
+		#var amt = -20.0 + (-30.0 + 20.0) * (val / 100.0)
+#		$CockpitAudio.volume_db = -amt
 
 
