@@ -69,7 +69,7 @@ func _process(delta):
 			$GunfireAudio.stop()
 	
 	# Update HUD
-	$"cockpit/HUD/GUI/Speed".text = str(speed) + "m/s"
+	#$"cockpit/HUD/GUI/Speed".text = str(speed) + "m/s"
 
 func set_throttle(val):
 	if val <= 100 and val >= 0:
