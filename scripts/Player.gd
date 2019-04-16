@@ -10,6 +10,7 @@ var roll_add = 2
 var yaw_add = 0.2
 
 onready var projectile = preload("res://scenes/Bullet.tscn")
+onready var gyroscope = get_node("cockpit/gimbal/gyroscope")
 
 var fire_delay = 0 # Do not change this one
 var next_is_right = true
@@ -29,16 +30,22 @@ func _process(delta):
 		set_throttle(speed - 1)
 	if Input.is_action_pressed("pitch_up"):
 		rotate_object_local(Vector3(1,0,0), pitch_add * delta)
+		gyroscope.rotate(Vector3(1,0,0), -pitch_add * delta)
 	if Input.is_action_pressed("pitch_down"):
 		rotate_object_local(Vector3(1,0,0), -pitch_add * delta)
+		gyroscope.rotate(Vector3(1,0,0), pitch_add * delta)
 	if Input.is_action_pressed("roll_right"):
 		rotate_object_local(Vector3(0,0,1), -roll_add * delta)
+		gyroscope.rotate(Vector3(0,0,1), roll_add * delta)
 	if Input.is_action_pressed("roll_left"):
 		rotate_object_local(Vector3(0,0,1), roll_add * delta)
+		gyroscope.rotate(Vector3(0,0,1), -roll_add * delta)
 	if Input.is_action_pressed("yaw_right"):
 		rotate_object_local(Vector3(0,1,0), -yaw_add * delta)
+		gyroscope.rotate(Vector3(0,1,0), yaw_add * delta)
 	if Input.is_action_pressed("yaw_left"):
 		rotate_object_local(Vector3(0,1,0), yaw_add * delta)
+		gyroscope.rotate(Vector3(0,1,0), -yaw_add * delta)
 	
 	# Move
 	translate_object_local(Vector3(0, 0, -speed * delta))

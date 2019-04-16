@@ -3,7 +3,7 @@
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://graphics/cockpit/cockpit.mesh" type="ArrayMesh" id=2]
 [ext_resource path="res://graphics/cockpit/gimbal.mesh" type="ArrayMesh" id=3]
-[ext_resource path="res://graphics/cockpit/compass.mesh" type="ArrayMesh" id=4]
+[ext_resource path="res://scenes/gyroscope.mesh" type="ArrayMesh" id=4]
 [ext_resource path="res://graphics/cockpit/joystickHub.mesh" type="ArrayMesh" id=5]
 [ext_resource path="res://graphics/cockpit/sprites/joystick.png" type="Texture" id=6]
 [ext_resource path="res://graphics/cockpit/throttle.mesh" type="ArrayMesh" id=7]
@@ -50,7 +50,7 @@ mesh = ExtResource( 3 )
 material/0 = null
 
 [node name="gyroscope" type="MeshInstance" parent="cockpit/gimbal"]
-transform = Transform( 1, -2.22045e-016, -2.22045e-016, 2.22045e-016, 7.54979e-008, 1, -2.22045e-016, -1, 7.54979e-008, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
 mesh = ExtResource( 4 )
 material/0 = null
 
