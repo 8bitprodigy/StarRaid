@@ -15,6 +15,9 @@ onready var gyroscope = get_node("cockpit/gimbal/gyroscope")
 var fire_delay = 0 # Do not change this one
 var next_is_right = true
 
+#onready var natural_pos = $cockpit/yaw/Camera.global_transform.origin # don't change this one!
+#onready var target_pos = natural_pos # change this for "where the camera should go"
+
 func _ready():
 	set_process(true)
 
@@ -22,12 +25,16 @@ func _process(delta):
 	if Input.is_key_pressed(KEY_ESCAPE):
 		get_tree().quit() # temporary solution
 	
+	var cam_target_force = Vector3()
+	
 	if Input.is_action_pressed("speed_up"):
 		#speed += 1
 		set_throttle(speed + 1)
+		cam_target_force.z = 1
 	if Input.is_action_pressed("speed_down"):
 		#speed -= 1
 		set_throttle(speed - 1)
+		cam_target_force.z = -1
 	if Input.is_action_pressed("pitch_up"):
 		rotate_object_local(Vector3(1,0,0), pitch_add * delta)
 		gyroscope.rotate(Vector3(1,0,0), -pitch_add * delta)
@@ -49,6 +56,9 @@ func _process(delta):
 	
 	# Move
 	translate_object_local(Vector3(0, 0, -speed * delta))
+	
+#	target_pos = natural_pos + cam_target_force
+#	$cockpit/yaw/Camera.translation = lerp($cockpit/yaw/Camera.translation, target_pos, delta)
 	
 	if Input.is_action_pressed("fire"):
 		if fire_delay <= 0:
