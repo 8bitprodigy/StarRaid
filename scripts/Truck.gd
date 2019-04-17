@@ -2,6 +2,8 @@ extends KinematicBody
 
 const SPEED = 15
 
+onready var destroyed_mat = preload("res://graphics/truck/truck_exploded.tres.material")
+
 var dead = false
 var health = 100
 var velocity = Vector3(-1, 0, 0) * SPEED
@@ -17,7 +19,9 @@ func hit(damage):
 		health -= damage
 		if health <= 0:
 			# Change texture to "destroyed"
+			$truck.material_override = destroyed_mat
 			# Emit particles
+			$ExplosionParticles.emitting = true
 			$SmokeParticles.emitting = true
 			# Stop moving
 			#velocity = Vector3()
