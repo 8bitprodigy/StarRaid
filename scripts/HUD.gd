@@ -2,9 +2,12 @@ extends Control
 
 const RETICLE_RADIUS = 5
 const LADDER_RADIUS = 50
+const HOMING_RADIUS = 10
 
 onready var ship = $"../../"
 var drawn = false
+
+var homing_reticle = null
 
 func _ready():
 	set_process(true)
@@ -25,6 +28,10 @@ func _draw():
 	draw_line(c + Vector2(RETICLE_RADIUS, 0), c + Vector2(RETICLE_RADIUS*2, 0), Color.green, 1) # right line
 	
 	draw_pitch_ladder(d, c)
+	
+	if homing_reticle != null: # there is a homing reticle
+#		draw_line(Vector2(homing_reticle.x - HOMING_RADIUS, homing_reticle.y - HOMING_RADIUS), Vector2(homing_reticle.x + HOMING_RADIUS, homing_reticle.y + HOMING_RADIUS), Color.green, 1)
+		draw_rect(Rect2(homing_reticle - Vector2(HOMING_RADIUS, HOMING_RADIUS), Vector2(HOMING_RADIUS, HOMING_RADIUS)), Color.green, false)
 
 func draw_pitch_ladder(d, c):
 	var left = Vector2(-LADDER_RADIUS, 0)

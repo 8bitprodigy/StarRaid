@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/Cockpit.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Truck.tscn" type="PackedScene" id=2]
 
 [node name="Spatial" type="Spatial"]
 
@@ -18,5 +19,8 @@ height = 1.0
 depth = 500.0
 
 [node name="Cockpit" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0403308, 0.125661, -0.0883376 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5663, 3.27934, 69.0137 )
+
+[node name="Truck" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.8257, -124.142 )
 
