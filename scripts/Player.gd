@@ -86,13 +86,11 @@ func _process(delta):
 			$GunfireAudio.stop()
 	
 	# Update HUD
-	$"cockpit/GUI/Speed".text = str(speed) + "m/s"
+	$"cockpit/GUI/Speed".text = str(speed) + " m/s"
 	# Get object
 	var enemy = get_tree().get_nodes_in_group("enemy")[0]
 	if not enemy.dead:
-		# Unproject position of object
 		var pos = $cockpit/yaw/Camera.unproject_position(enemy.get_node("Center").global_transform.origin)
-		# Draw image at position on screen of HUD
 		$cockpit/GUI.homing_reticle = pos
 	else:
 		$cockpit/GUI.homing_reticle = null

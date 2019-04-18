@@ -23,3 +23,21 @@ func _input(event):
 		pitch = max(min(pitch - event.relative.y * SENSITIVITY, 85), -85)
 		$"..".set_rotation(Vector3(0, deg2rad(yaw), 0))
 		set_rotation(Vector3(deg2rad(pitch), 0, 0))
+
+func shake(length, magnitude):
+	var time = 0
+	var camera_pos = translation
+	while time < length:
+		time += get_process_delta_time()
+		
+		var offset = Vector3()
+		offset.x = rand_range(-magnitude, magnitude)
+		offset.y = rand_range(-magnitude, magnitude)
+		offset.z = 0
+		
+		var new_camera_pos = camera_pos
+		new_camera_pos += offset
+		translation = new_camera_pos
+		
+		yield(get_tree(), "idle_frame")
+	translation = camera_pos
