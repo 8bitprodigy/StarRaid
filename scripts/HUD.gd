@@ -22,12 +22,13 @@ func _draw():
 	# Reticle
 	# draw_x(Vector2(d.x / 2 - 5, d.y / 2 - 5 + 40), Vector2(d.x / 2 + 5, d.y / 2 + 5 + 40))
 	# Reticle needs to be replaced with the standard unfilled circle and three lines out of it: left, top, right
-	draw_unfilled_circle(c, RETICLE_RADIUS, Color.green) # circle
-	draw_line(c - Vector2(0, RETICLE_RADIUS), c - Vector2(0, RETICLE_RADIUS*2), Color.green, 1) # top line
-	draw_line(c - Vector2(RETICLE_RADIUS, 0), c - Vector2(RETICLE_RADIUS*2, 0), Color.green, 1) # left line
-	draw_line(c + Vector2(RETICLE_RADIUS, 0), c + Vector2(RETICLE_RADIUS*2, 0), Color.green, 1) # right line
+	var pos = $"../yaw/Camera".unproject_position($"../..".translation + Vector3(0, 0, -15))
+	draw_unfilled_circle(pos, RETICLE_RADIUS, Color.green) # circle
+	draw_line(pos - Vector2(0, RETICLE_RADIUS), pos - Vector2(0, RETICLE_RADIUS*2), Color.green, 1) # top line
+	draw_line(pos - Vector2(RETICLE_RADIUS, 0), pos - Vector2(RETICLE_RADIUS*2, 0), Color.green, 1) # left line
+	draw_line(pos + Vector2(RETICLE_RADIUS, 0), pos + Vector2(RETICLE_RADIUS*2, 0), Color.green, 1) # right line
 	
-	draw_pitch_ladder(d, c)
+	#draw_pitch_ladder(d, c)
 	
 	if homing_reticle != null: # there is a homing reticle
 #		draw_line(Vector2(homing_reticle.x - HOMING_RADIUS, homing_reticle.y - HOMING_RADIUS), Vector2(homing_reticle.x + HOMING_RADIUS, homing_reticle.y + HOMING_RADIUS), Color.green, 1)

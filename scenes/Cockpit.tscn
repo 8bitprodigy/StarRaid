@@ -128,8 +128,8 @@ stream = ExtResource( 13 )
 volume_db = -15.0
 
 [node name="Right" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 1.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.32, 0, 0.9 )
 
 [node name="Left" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 1.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32, 0, 0.9 )
 
