@@ -90,8 +90,9 @@ func _process(delta):
 	# Get object
 	var enemy = get_tree().get_nodes_in_group("enemy")[0]
 	if not enemy.dead:
-		var pos = $cockpit/yaw/Camera.unproject_position(enemy.get_node("Center").global_transform.origin)
-		$cockpit/GUI.homing_reticle = pos
+		var dot = (enemy.get_node("Center").global_transform.origin - $cockpit/yaw/Camera.global_transform.origin).normalized().dot(-$cockpit/yaw/Camera.global_transform.basis.z)
+		if dot > 0:
+			$cockpit/GUI.homing_reticle = $cockpit/yaw/Camera.unproject_position(enemy.get_node("Center").global_transform.origin)
 	else:
 		$cockpit/GUI.homing_reticle = null
 

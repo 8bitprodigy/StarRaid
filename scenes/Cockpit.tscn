@@ -97,6 +97,12 @@ near = 0.1
 far = 1000.0
 script = ExtResource( 9 )
 
+[node name="TargetingMesh" type="MeshInstance" parent="cockpit"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.173177, -0.93669 )
+visible = false
+mesh = SubResource( 4 )
+material/0 = null
+
 [node name="GUI" type="Control" parent="cockpit"]
 margin_right = 40.0
 margin_bottom = 40.0
@@ -111,12 +117,6 @@ margin_bottom = 19.0
 custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "100 m/s"
-
-[node name="TargetingMesh" type="MeshInstance" parent="cockpit"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.173177, -0.93669 )
-visible = false
-mesh = SubResource( 4 )
-material/0 = null
 
 [node name="CockpitAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
