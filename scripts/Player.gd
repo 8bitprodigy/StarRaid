@@ -61,19 +61,31 @@ func _process(delta):
 #	$cockpit/yaw/Camera.translation = lerp($cockpit/yaw/Camera.translation, target_pos, delta)
 	
 	if Input.is_action_pressed("fire"):
-		if fire_delay <= 0:
-			var target
-			if next_is_right:
-				target = $Right.translation
-			else:
-				target = $Left.translation
-			next_is_right = !next_is_right
+#		if fire_delay <= 0:
+#			var target
+#			if next_is_right:
+#				target = $Right.translation
+#			else:
+#				target = $Left.translation
+#			next_is_right = !next_is_right
+#
+#			var bullet = projectile.instance()
+#			bullet.translation = to_global(target)
+#			bullet.rotation = rotation
+#			$"..".add_child(bullet)
+#			bullet.velocity = -bullet.global_transform.basis.z;
+#
+#			fire_delay = 0.05 # in seconds
+#		else:
+#			fire_delay -= delta
 		
+		if fire_delay <= 0:
 			var bullet = projectile.instance()
-			bullet.translation = to_global(target)
+			bullet.translation = to_global($Rotary.translation)
 			bullet.rotation = rotation
+			bullet.velocity = -transform.basis.z
 			$"..".add_child(bullet)
-			bullet.velocity = -bullet.global_transform.basis.z;
+			#bullet.velocity = -bullet.global_transform.basis.z
 			
 			fire_delay = 0.05 # in seconds
 		else:
@@ -86,7 +98,8 @@ func _process(delta):
 			$GunfireAudio.stop()
 	
 	# Update HUD
-	$"cockpit/GUI/Speed".text = str(speed) + " m/s"
+	$"cockpit/GUI/Indicator".text = str(speed / 2) + " m/s\n" + \
+		"CANNON"
 	# Get object
 	var enemy = get_tree().get_nodes_in_group("enemy")[0]
 	if not enemy.dead:

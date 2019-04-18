@@ -109,7 +109,7 @@ margin_bottom = 40.0
 mouse_filter = 1
 script = ExtResource( 10 )
 
-[node name="Speed" type="Label" parent="cockpit/GUI"]
+[node name="Indicator" type="Label" parent="cockpit/GUI"]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 82.0
@@ -126,6 +126,9 @@ autoplay = true
 [node name="GunfireAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
 volume_db = -15.0
+
+[node name="Rotary" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -3 )
 
 [node name="Right" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.32, 0, 0.9 )
