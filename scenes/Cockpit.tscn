@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://graphics/cockpit/cockpit.mesh" type="ArrayMesh" id=2]
@@ -21,19 +21,8 @@ params_grow = true
 params_grow_amount = 0.02
 metallic_specular = 0.0
 
-[sub_resource type="ViewportTexture" id=2]
-viewport_path = NodePath("cockpit/HUD")
-
-[sub_resource type="SpatialMaterial" id=3]
-resource_local_to_scene = true
-flags_transparent = true
-flags_unshaded = true
-flags_albedo_tex_force_srgb = true
-albedo_texture = SubResource( 2 )
-
 [sub_resource type="QuadMesh" id=4]
 resource_local_to_scene = true
-material = SubResource( 3 )
 size = Vector2( 0.3, 0.2 )
 
 [node name="Cockpit" type="Spatial"]

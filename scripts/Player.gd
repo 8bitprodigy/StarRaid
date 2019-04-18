@@ -14,6 +14,7 @@ onready var gyroscope = get_node("cockpit/gimbal/gyroscope")
 
 var fire_delay = 0 # Do not change this one
 var next_is_right = true
+var gun = 0 # 0 - 2 is cannon, air-to-surface missile, air-to-air missile
 
 #onready var natural_pos = $cockpit/yaw/Camera.global_transform.origin # don't change this one!
 #onready var target_pos = natural_pos # change this for "where the camera should go"
@@ -60,6 +61,10 @@ func _process(delta):
 #	target_pos = natural_pos + cam_target_force
 #	$cockpit/yaw/Camera.translation = lerp($cockpit/yaw/Camera.translation, target_pos, delta)
 	
+	if Input.is_action_just_pressed("change_gun"):
+		if gun < 2: gun += 1
+		else: gun = 0
+	
 	if Input.is_action_pressed("fire"):
 #		if fire_delay <= 0:
 #			var target
@@ -99,7 +104,7 @@ func _process(delta):
 	
 	# Update HUD
 	$"cockpit/GUI/Indicator".text = str(speed / 2) + " m/s\n" + \
-		"CANNON"
+		gun_name(gun)
 	# Get object
 	var enemy = get_tree().get_nodes_in_group("enemy")[0]
 	if not enemy.dead:
@@ -108,6 +113,12 @@ func _process(delta):
 			$cockpit/GUI.homing_reticle = $cockpit/yaw/Camera.unproject_position(enemy.get_node("Center").global_transform.origin)
 	else:
 		$cockpit/GUI.homing_reticle = null
+
+func gun_name(g):
+	match g:
+		0: return "CANNON"
+		1: return "ASM"
+		2: return "AAM"
 
 func set_throttle(val):
 	if val <= 100 and val >= 0:
