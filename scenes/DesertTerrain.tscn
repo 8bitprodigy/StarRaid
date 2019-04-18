@@ -4,8 +4,6 @@
 [ext_resource path="res://scripts/TileMap_Terrain_tile_flip.gd" type="Script" id=2]
 [ext_resource path="res://graphics/terrains/desert/Desert_Tilemap_Texture.png" type="Texture" id=3]
 
-
-
 [sub_resource type="SpatialMaterial" id=1]
 flags_vertex_lighting = true
 params_specular_mode = 4
@@ -14,6 +12,7 @@ albedo_texture = ExtResource( 3 )
 [node name="terrain" type="Spatial"]
 
 [node name="TileMap" type="TileMap" parent="."]
+visible = false
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 format = 1
