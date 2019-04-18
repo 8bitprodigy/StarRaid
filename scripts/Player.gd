@@ -86,7 +86,7 @@ func _process(delta):
 			$GunfireAudio.stop()
 	
 	# Update HUD
-	#$"cockpit/HUD/GUI/Speed".text = str(speed) + "m/s"
+	$"cockpit/GUI/Speed".text = str(speed) + "m/s"
 	# Get object
 	var enemy = get_tree().get_nodes_in_group("enemy")[0]
 	if not enemy.dead:
