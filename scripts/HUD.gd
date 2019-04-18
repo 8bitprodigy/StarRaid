@@ -1,6 +1,6 @@
 extends Control
 
-const RETICLE_RADIUS = 5
+const RETICLE_RADIUS = 3
 const LADDER_RADIUS = 50
 const HOMING_RADIUS = 10
 
@@ -22,7 +22,7 @@ func _draw():
 	# Reticle
 	# draw_x(Vector2(d.x / 2 - 5, d.y / 2 - 5 + 40), Vector2(d.x / 2 + 5, d.y / 2 + 5 + 40))
 	# Reticle needs to be replaced with the standard unfilled circle and three lines out of it: left, top, right
-	var pos = $"../yaw/Camera".unproject_position($"../..".translation + Vector3(0, 0, -15))
+	var pos = $"../yaw/Camera".unproject_position($"../..".translation + $"../..".transform.basis * Vector3(0, 0, -15))
 	draw_unfilled_circle(pos, RETICLE_RADIUS, Color.green) # circle
 	draw_line(pos - Vector2(0, RETICLE_RADIUS), pos - Vector2(0, RETICLE_RADIUS*2), Color.green, 1) # top line
 	draw_line(pos - Vector2(RETICLE_RADIUS, 0), pos - Vector2(RETICLE_RADIUS*2, 0), Color.green, 1) # left line
