@@ -10,6 +10,7 @@ albedo_color = Color( 0.996078, 1, 0.32549, 1 )
 material = SubResource( 1 )
 radius = 0.03
 mid_height = 0.5
+radial_segments = 4
 rings = 1
 
 [sub_resource type="BoxShape" id=3]

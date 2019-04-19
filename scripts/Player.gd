@@ -9,10 +9,12 @@ var pitch_add = 1
 var roll_add = 2
 var yaw_add = 0.2
 
-onready var projectile = preload("res://scenes/Bullet.tscn")
+onready var bullet = preload("res://scenes/Bullet.tscn")
+onready var missile = preload("res://scenes/Missile.tscn")
 onready var gyroscope = get_node("cockpit/gimbal/gyroscope")
 
-var fire_delay = 0 # Do not change this one
+var cannon_delay = 0 # Do not change this one
+var missile_delay = 0
 var next_is_right = true
 var gun = 0 # 0 - 2 is cannon, air-to-surface missile, air-to-air missile
 
@@ -66,35 +68,35 @@ func _process(delta):
 		else: gun = 0
 	
 	if Input.is_action_pressed("fire"):
-#		if fire_delay <= 0:
-#			var target
-#			if next_is_right:
-#				target = $Right.translation
-#			else:
-#				target = $Left.translation
-#			next_is_right = !next_is_right
-#
-#			var bullet = projectile.instance()
-#			bullet.translation = to_global(target)
-#			bullet.rotation = rotation
-#			$"..".add_child(bullet)
-#			bullet.velocity = -bullet.global_transform.basis.z;
-#
-#			fire_delay = 0.05 # in seconds
-#		else:
-#			fire_delay -= delta
-		
-		if fire_delay <= 0:
-			var bullet = projectile.instance()
-			bullet.translation = to_global($Rotary.translation)
-			bullet.rotation = rotation
-			bullet.velocity = -transform.basis.z
-			$"..".add_child(bullet)
-			#bullet.velocity = -bullet.global_transform.basis.z
-			
-			fire_delay = 0.05 # in seconds
+		if gun != 0:
+			if missile_delay <= 0:
+				var target
+				if next_is_right:
+					target = $Right.translation
+				else:
+					target = $Left.translation
+				next_is_right = !next_is_right
+	
+				var m = missile.instance()
+				m.translation = to_global(target)
+				m.rotation = rotation
+				m.velocity = -transform.basis.z
+				$"..".add_child(m)
+	
+				missile_delay = 0.5 # in seconds
+			else:
+				missile_delay -= delta
 		else:
-			fire_delay -= delta
+			if cannon_delay <= 0:
+				var b = bullet.instance()
+				b.translation = to_global($Rotary.translation)
+				b.rotation = rotation
+				b.velocity = -transform.basis.z
+				$"..".add_child(b)
+				
+				cannon_delay = 0.05 # in seconds
+			else:
+				cannon_delay -= delta
 		
 		if not $GunfireAudio.playing:
 			$GunfireAudio.play()
