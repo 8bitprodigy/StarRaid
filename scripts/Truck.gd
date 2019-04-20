@@ -22,6 +22,8 @@ func hit(damage):
 			$truck.material_override = destroyed_mat
 			# Explosion crater
 			$ExplosionSplat.visible = true
+			# Play animation
+			$AnimationPlayer.play("explode")
 			# Emit particles
 			$ExplosionParticles.emitting = true
 			$SmokeParticles.emitting = true
