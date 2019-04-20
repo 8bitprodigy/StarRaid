@@ -127,7 +127,7 @@ func _process(delta):
 		$cockpit/GUI.homing_reticle = null # no target found
 		lock_on_timer = 0
 	else: # enemy found
-		if lock_on_timer < 5 and (enemy.get_node("Center").global_transform.origin - $cockpit/yaw/Camera.global_transform.origin).normalized().dot(-$cockpit/yaw/Camera.global_transform.basis.z) > 0:
+		if lock_on_timer < 3 and (enemy.get_node("Center").global_transform.origin - $cockpit/yaw/Camera.global_transform.origin).normalized().dot(-$cockpit/yaw/Camera.global_transform.basis.z) > 0:
 			# cheap blinking outline effect
 			if int(lock_on_timer) % 2 != 0: $cockpit/GUI.homing_reticle = null # turn off reticle for odd numbers
 			else: $cockpit/GUI.homing_reticle = $cockpit/yaw/Camera.unproject_position(enemy.get_node("Center").global_transform.origin)
