@@ -17,6 +17,8 @@ var cannon_delay = 0 # Do not change this one
 var missile_delay = 0
 var next_is_right = true
 var gun = 0 # 0 - 2 is cannon, air-to-surface missile, air-to-air missile
+var lock_on_timer = 0
+var lock_on_target = null # whoever we are fully locked-onto
 
 #onready var natural_pos = $cockpit/yaw/Camera.global_transform.origin # don't change this one!
 #onready var target_pos = natural_pos # change this for "where the camera should go"
@@ -76,15 +78,14 @@ func _process(delta):
 				else:
 					target = $Left.translation
 				next_is_right = !next_is_right
-	
+				
 				var m = missile.instance()
 				m.translation = to_global(target)
 				m.rotation = rotation
 				m.velocity = -transform.basis.z
 				
-				var enemy = get_tree().get_nodes_in_group("enemy")[0]
-				if not enemy.dead:
-					m.target = enemy
+				# get target (ACTUALLY NO WAIT REVERSE THIS PROCESS: have the missile request our lockon target)
+				m.target = self
 				
 				$"..".add_child(m)
 	
@@ -113,13 +114,31 @@ func _process(delta):
 	$"cockpit/GUI/Indicator".text = str(speed / 2) + " m/s\n" + \
 		gun_name(gun)
 	# Get object
-	var enemy = get_tree().get_nodes_in_group("enemy")[0]
-	if not enemy.dead:
-		var dot = (enemy.get_node("Center").global_transform.origin - $cockpit/yaw/Camera.global_transform.origin).normalized().dot(-$cockpit/yaw/Camera.global_transform.basis.z)
-		if dot > 0:
+	# eventually, you will have to check that the currently homing enemy is the same as last frame for lock-on
+	var enemy = null
+	for e in get_tree().get_nodes_in_group("enemy"): # get the closest enemy
+		# if we are looking in the direction of the enemy vehicle
+		if not e.dead and (e.get_node("Center").global_transform.origin - $cockpit/yaw/Camera.global_transform.origin).normalized().dot(-$cockpit/yaw/Camera.global_transform.basis.z) > 0:
+			# if no selected enemy OR select nearest enemy
+			if enemy == null or (e.global_transform - global_transform).magnitude() < (enemy.global_transform - global_transform).magnitude():
+				enemy = e
+	
+	if enemy == null:
+		$cockpit/GUI.homing_reticle = null # no target found
+		lock_on_timer = 0
+	else: # enemy found
+		if lock_on_timer < 5 and (enemy.get_node("Center").global_transform.origin - $cockpit/yaw/Camera.global_transform.origin).normalized().dot(-$cockpit/yaw/Camera.global_transform.basis.z) > 0:
+			# cheap blinking outline effect
+			if int(lock_on_timer) % 2 != 0: $cockpit/GUI.homing_reticle = null # turn off reticle for odd numbers
+			else: $cockpit/GUI.homing_reticle = $cockpit/yaw/Camera.unproject_position(enemy.get_node("Center").global_transform.origin)
+			# make sure "beep beep beep ..." audio is playing
+			lock_on_timer += delta
+			pass
+		else: # locked on
+			lock_on_target = enemy
+			# make sure "beeeeeeeeep..." audio is playing
+			# "locked in" reticle around target
 			$cockpit/GUI.homing_reticle = $cockpit/yaw/Camera.unproject_position(enemy.get_node("Center").global_transform.origin)
-	else:
-		$cockpit/GUI.homing_reticle = null
 
 func gun_name(g):
 	match g:

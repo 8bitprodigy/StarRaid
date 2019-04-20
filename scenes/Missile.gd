@@ -6,7 +6,7 @@ var life = 10 # in seconds
 var velocity: Vector3
 
 # missile-specific
-var target = null # Spatial node with a transform
+var target = null # Spatial node with a transform and a lock_on_target value
 
 func _ready():
 	set_process(true)
@@ -21,14 +21,15 @@ func _physics_process(delta):
 	var collision = null
 	if target == null:
 		collision = move_and_collide(velocity * SPEED)
-	else: # lerp the velocity ?
-		#print(str(target.global_transform.origin))
+	elif target.lock_on_target != null:
 		# instantly rotate towards location
-		look_at(target.get_node("Center").global_transform.origin, global_transform.basis.y)
+		# lerp the rotation (WIP)
+		look_at(target.lock_on_target.get_node("Center").global_transform.origin, global_transform.basis.y)
 		# set new velocity: forward direction
 		velocity = -transform.basis.z
 		# fly towards location
 		collision = move_and_collide(velocity * SPEED)
+	else: target = null
 	
 	if collision != null:
 		# send "hit by this bullet" message to receiver
