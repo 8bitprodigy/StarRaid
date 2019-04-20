@@ -20,6 +20,8 @@ func hit(damage):
 		if health <= 0:
 			# Change texture to "destroyed"
 			$truck.material_override = destroyed_mat
+			# Explosion crater
+			$ExplosionSplat.visible = true
 			# Emit particles
 			$ExplosionParticles.emitting = true
 			$SmokeParticles.emitting = true

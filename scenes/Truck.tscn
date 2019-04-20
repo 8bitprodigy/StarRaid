@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scripts/Truck.gd" type="Script" id=1]
 [ext_resource path="res://graphics/truck/truck.material" type="Material" id=2]
 [ext_resource path="res://graphics/smoke_material.tres" type="Material" id=3]
 [ext_resource path="res://graphics/explosion_material.tres" type="Material" id=4]
+[ext_resource path="res://graphics/splat.png" type="Texture" id=5]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Cube"
@@ -108,4 +109,10 @@ draw_pass_1 = SubResource( 9 )
 
 [node name="Center" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0 )
+
+[node name="ExplosionSplat" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0.097157, 0 )
+visible = false
+pixel_size = 0.2
+texture = ExtResource( 5 )
 
