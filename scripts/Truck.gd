@@ -5,7 +5,7 @@ const SPEED = 15
 onready var destroyed_mat = preload("res://graphics/truck/truck_exploded.tres.material")
 
 var dead = false
-var health = 100
+var health = 50
 var velocity = Vector3(-1, 0, 0) * SPEED
 
 func _ready():

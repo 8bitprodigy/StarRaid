@@ -81,6 +81,11 @@ func _process(delta):
 				m.translation = to_global(target)
 				m.rotation = rotation
 				m.velocity = -transform.basis.z
+				
+				var enemy = get_tree().get_nodes_in_group("enemy")[0]
+				if not enemy.dead:
+					m.target = enemy
+				
 				$"..".add_child(m)
 	
 				missile_delay = 0.5 # in seconds
