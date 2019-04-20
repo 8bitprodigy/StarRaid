@@ -124,6 +124,7 @@ func _process(delta):
 				enemy = e
 	
 	if enemy == null:
+		$cockpit/GUI.actively_locking_on = false
 		$cockpit/GUI.homing_reticle = null # no target found
 		lock_on_timer = 0
 	else: # enemy found

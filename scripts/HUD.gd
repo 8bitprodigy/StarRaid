@@ -35,14 +35,15 @@ func _draw():
 	if actively_locking_on: # there is a homing reticle
 		$Lock.visible = true
 		if homing_reticle != null:
+			# Draw the rectangle
 			draw_rect(Rect2(homing_reticle - Vector2(HOMING_RADIUS, HOMING_RADIUS), Vector2(HOMING_RADIUS * 2, HOMING_RADIUS * 2)), Color.green, false)
 			
 			if fully_locked: # make a diamond when fully locked in
 				# all points
-				var top = Vector2(homing_reticle.x, homing_reticle.y - HOMING_RADIUS)
-				var left = Vector2(homing_reticle.x - HOMING_RADIUS, homing_reticle.y)
-				var right = Vector2(homing_reticle.x + HOMING_RADIUS, homing_reticle.y)
-				var bottom = Vector2(homing_reticle.x, homing_reticle.y + HOMING_RADIUS)
+				var top = Vector2(homing_reticle.x, homing_reticle.y - HOMING_RADIUS - 2)
+				var left = Vector2(homing_reticle.x - HOMING_RADIUS - 2, homing_reticle.y)
+				var right = Vector2(homing_reticle.x + HOMING_RADIUS + 2, homing_reticle.y)
+				var bottom = Vector2(homing_reticle.x, homing_reticle.y + HOMING_RADIUS + 2)
 				
 				draw_line(left, top, Color.green) # top left diag
 				draw_line(right, top, Color.green) # top right diag
