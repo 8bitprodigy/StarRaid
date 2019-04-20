@@ -8,6 +8,7 @@ onready var ship = $"../../"
 var drawn = false
 
 var homing_reticle = null
+var fully_locked = false # true when the homing_reticle is confirmed LOCKED ON
 
 func _ready():
 	set_process(true)
@@ -31,8 +32,9 @@ func _draw():
 	#draw_pitch_ladder(d, c)
 	
 	if homing_reticle != null: # there is a homing reticle
-#		draw_line(Vector2(homing_reticle.x - HOMING_RADIUS, homing_reticle.y - HOMING_RADIUS), Vector2(homing_reticle.x + HOMING_RADIUS, homing_reticle.y + HOMING_RADIUS), Color.green, 1)
 		draw_rect(Rect2(homing_reticle - Vector2(HOMING_RADIUS, HOMING_RADIUS), Vector2(HOMING_RADIUS, HOMING_RADIUS)), Color.green, false)
+		if fully_locked: # make a diamond when fully locked in
+			pass
 
 func draw_pitch_ladder(d, c):
 	var left = Vector2(-LADDER_RADIUS, 0)

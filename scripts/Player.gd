@@ -69,6 +69,10 @@ func _process(delta):
 		if gun < 2: gun += 1
 		else: gun = 0
 	
+	# Update "cooldowns" / delays
+	if cannon_delay > 0: cannon_delay -= delta
+	if missile_delay > 0: missile_delay -= delta
+	
 	if Input.is_action_pressed("fire"):
 		if gun != 0:
 			if missile_delay <= 0:
@@ -90,8 +94,6 @@ func _process(delta):
 				$"..".add_child(m)
 	
 				missile_delay = 0.5 # in seconds
-			else:
-				missile_delay -= delta
 		else:
 			if cannon_delay <= 0:
 				var b = bullet.instance()
@@ -101,8 +103,6 @@ func _process(delta):
 				$"..".add_child(b)
 				
 				cannon_delay = 0.05 # in seconds
-			else:
-				cannon_delay -= delta
 		
 		if not $GunfireAudio.playing:
 			$GunfireAudio.play()
@@ -120,7 +120,7 @@ func _process(delta):
 		# if we are looking in the direction of the enemy vehicle
 		if not e.dead and (e.get_node("Center").global_transform.origin - $cockpit/yaw/Camera.global_transform.origin).normalized().dot(-$cockpit/yaw/Camera.global_transform.basis.z) > 0:
 			# if no selected enemy OR select nearest enemy
-			if enemy == null or (e.global_transform - global_transform).magnitude() < (enemy.global_transform - global_transform).magnitude():
+			if enemy == null or e.global_transform.basis.distance_to(global_transform.basis) < enemy.global_transform.basis.distance_to(global_transform.basis):
 				enemy = e
 	
 	if enemy == null:

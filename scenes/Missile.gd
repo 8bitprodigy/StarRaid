@@ -23,8 +23,12 @@ func _physics_process(delta):
 		collision = move_and_collide(velocity * SPEED)
 	elif target.lock_on_target != null:
 		# instantly rotate towards location
-		# lerp the rotation (WIP)
-		look_at(target.lock_on_target.get_node("Center").global_transform.origin, global_transform.basis.y)
+		# Get updated target rotation
+		var t = transform.looking_at(target.lock_on_target.get_node("Center").global_transform.origin, global_transform.basis.y)
+		# Rotate towards destination
+		rotation.x = lerp(rotation.x, t.basis.get_euler().x, delta * 5)
+		rotation.y = lerp(rotation.y, t.basis.get_euler().y, delta * 5)
+		
 		# set new velocity: forward direction
 		velocity = -transform.basis.z
 		# fly towards location
