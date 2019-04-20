@@ -2,13 +2,14 @@ extends Control
 
 const RETICLE_RADIUS = 3
 const LADDER_RADIUS = 50
-const HOMING_RADIUS = 10
+const HOMING_RADIUS = 5
 
 onready var ship = $"../../"
 var drawn = false
 
-var homing_reticle = null
-var fully_locked = false # true when the homing_reticle is confirmed LOCKED ON
+var homing_reticle = null # Vector2 position of where to draw homing reticle when actively_locking_on is true
+var actively_locking_on = false # Attempting to lock on
+var fully_locked = false # True when the homing_reticle is confirmed LOCKED ON
 
 func _ready():
 	set_process(true)
@@ -31,10 +32,32 @@ func _draw():
 	
 	#draw_pitch_ladder(d, c)
 	
-	if homing_reticle != null: # there is a homing reticle
-		draw_rect(Rect2(homing_reticle - Vector2(HOMING_RADIUS, HOMING_RADIUS), Vector2(HOMING_RADIUS, HOMING_RADIUS)), Color.green, false)
-		if fully_locked: # make a diamond when fully locked in
-			pass
+	if actively_locking_on: # there is a homing reticle
+		$Lock.visible = true
+		if homing_reticle != null:
+			draw_rect(Rect2(homing_reticle - Vector2(HOMING_RADIUS, HOMING_RADIUS), Vector2(HOMING_RADIUS * 2, HOMING_RADIUS * 2)), Color.green, false)
+			
+			if fully_locked: # make a diamond when fully locked in
+				# all points
+				var top = Vector2(homing_reticle.x, homing_reticle.y - HOMING_RADIUS)
+				var left = Vector2(homing_reticle.x - HOMING_RADIUS, homing_reticle.y)
+				var right = Vector2(homing_reticle.x + HOMING_RADIUS, homing_reticle.y)
+				var bottom = Vector2(homing_reticle.x, homing_reticle.y + HOMING_RADIUS)
+				
+				draw_line(left, top, Color.green) # top left diag
+				draw_line(right, top, Color.green) # top right diag
+				draw_line(left, bottom, Color.green) # bottom left diag
+				draw_line(right, bottom, Color.green) # bottom right diag
+		
+		if not fully_locked:
+			# Draw X over "LOCK" on GUI
+			var tl = $Lock.rect_position
+			var tr = $Lock.rect_position + Vector2($Lock.rect_size.x, 0)
+			var bl = $Lock.rect_position + Vector2(0, $Lock.rect_size.y)
+			var br = $Lock.rect_position + $Lock.rect_size
+			draw_line(tl, br, Color.red)
+			draw_line(tr, bl, Color.red)
+	else: $Lock.visible = false
 
 func draw_pitch_ladder(d, c):
 	var left = Vector2(-LADDER_RADIUS, 0)

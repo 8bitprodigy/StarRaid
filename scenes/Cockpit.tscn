@@ -21,7 +21,7 @@ params_grow = true
 params_grow_amount = 0.02
 metallic_specular = 0.0
 
-[sub_resource type="QuadMesh" id=4]
+[sub_resource type="QuadMesh" id=2]
 resource_local_to_scene = true
 size = Vector2( 0.3, 0.2 )
 
@@ -89,7 +89,7 @@ script = ExtResource( 9 )
 [node name="TargetingMesh" type="MeshInstance" parent="cockpit"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.173177, -0.93669 )
 visible = false
-mesh = SubResource( 4 )
+mesh = SubResource( 2 )
 material/0 = null
 
 [node name="GUI" type="Control" parent="cockpit"]
@@ -106,6 +106,16 @@ margin_bottom = 19.0
 custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "100 m/s"
+
+[node name="Lock" type="Label" parent="cockpit/GUI"]
+margin_left = 345.0
+margin_top = 6.0
+margin_right = 377.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 11 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+text = "LOCK"
+align = 2
 
 [node name="CockpitAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )

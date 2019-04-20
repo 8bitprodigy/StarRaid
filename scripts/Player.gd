@@ -127,7 +127,9 @@ func _process(delta):
 		$cockpit/GUI.homing_reticle = null # no target found
 		lock_on_timer = 0
 	else: # enemy found
+		$cockpit/GUI.actively_locking_on = true
 		if lock_on_timer < 3 and (enemy.get_node("Center").global_transform.origin - $cockpit/yaw/Camera.global_transform.origin).normalized().dot(-$cockpit/yaw/Camera.global_transform.basis.z) > 0:
+			$"cockpit/GUI/".fully_locked = false
 			# cheap blinking outline effect
 			if int(lock_on_timer) % 2 != 0: $cockpit/GUI.homing_reticle = null # turn off reticle for odd numbers
 			else: $cockpit/GUI.homing_reticle = $cockpit/yaw/Camera.unproject_position(enemy.get_node("Center").global_transform.origin)
@@ -136,6 +138,8 @@ func _process(delta):
 			pass
 		else: # locked on
 			lock_on_target = enemy
+			# update HUD
+			$"cockpit/GUI/".fully_locked = true
 			# make sure "beeeeeeeeep..." audio is playing
 			# "locked in" reticle around target
 			$cockpit/GUI.homing_reticle = $cockpit/yaw/Camera.unproject_position(enemy.get_node("Center").global_transform.origin)
