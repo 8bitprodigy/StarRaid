@@ -76,7 +76,7 @@ mesh = ExtResource( 8 )
 material/0 = null
 
 [node name="yaw" type="Spatial" parent="cockpit"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0.5 )
 
 [node name="Camera" type="Camera" parent="cockpit/yaw"]
 keep_aspect = 0
