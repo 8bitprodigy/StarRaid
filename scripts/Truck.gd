@@ -33,3 +33,6 @@ func hit(damage):
 #			queue_free()
 			print("Truck destroyed!")
 			dead = true
+			
+			# Send signals
+			get_tree().get_nodes_in_group("player")[0].reset_left_display_delay = 3 # wait 3 seconds to switch display

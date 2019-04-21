@@ -13,6 +13,8 @@ onready var bullet = preload("res://scenes/Bullet.tscn")
 onready var missile = preload("res://scenes/Missile.tscn")
 onready var gyroscope = get_node("cockpit/gimbal/gyroscope")
 
+var reset_left_display_delay = 0
+
 var cannon_delay = 0 # Do not change this one
 var missile_delay = 0
 var next_is_right = true
@@ -130,7 +132,7 @@ func _process(delta):
 				if enemy == null or e.global_transform.basis.distance_to(global_transform.basis) < enemy.global_transform.basis.distance_to(global_transform.basis):
 					enemy = e
 		
-		if enemy == null: reset_lockon()
+		if enemy == null: reset_lockon(delta)
 		else: # enemy found
 			$cockpit/LeftDisplay.visible = true
 			$cockpit/GUI.actively_locking_on = true
@@ -156,10 +158,12 @@ func _process(delta):
 				# make sure "beeeeeeeeep..." audio is playing
 				# "locked in" reticle around target
 				$cockpit/GUI.homing_reticle = $cockpit/yaw/Camera.unproject_position(enemy.get_node("Center").global_transform.origin)
-	else: reset_lockon()
+	else: reset_lockon(delta)
 
-func reset_lockon():
-	$cockpit/LeftDisplay.visible = false
+func reset_lockon(delta):
+	if reset_left_display_delay <= 0:
+		$cockpit/LeftDisplay.visible = false
+	else: reset_left_display_delay -= delta
 	$cockpit/GUI.actively_locking_on = false
 	$cockpit/GUI.homing_reticle = null # no target found
 	lock_on_timer = 0

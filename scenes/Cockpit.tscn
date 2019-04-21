@@ -34,7 +34,9 @@ flags_unshaded = true
 flags_do_not_receive_shadows = true
 albedo_texture = SubResource( 4 )
 
-[node name="Cockpit" type="Spatial"]
+[node name="Cockpit" type="Spatial" groups=[
+"player",
+]]
 script = ExtResource( 1 )
 
 [node name="cockpit" type="MeshInstance" parent="."]
