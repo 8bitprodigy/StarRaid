@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/Cockpit.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Truck.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/DesertTerrain.tscn" type="PackedScene" id=3]
+[ext_resource path="res://graphics/terrains/desert/desert_environment.tres" type="Environment" id=4]
 
 [node name="Spatial" type="Spatial"]
 
@@ -13,4 +14,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5663, 3.27934, 69.0137 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 174.643, 0, -155.231 )
 
 [node name="terrain" parent="." instance=ExtResource( 3 )]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 4 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.957064, -0.204975, 0.204975, 0, 0.707107, 0.707107, -0.289878, -0.676746, 0.676746, 0, 23.7953, 0 )
 
