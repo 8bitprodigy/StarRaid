@@ -16,13 +16,30 @@ func _process(delta):
 	else:
 		if fov != DEFAULT_FOV:
 			fov = lerp(fov, DEFAULT_FOV, delta * 10)
+	
+	if Input.is_action_pressed("look_left"):
+		print("Trying to look left")
+	if Input.is_action_pressed("look_right"):
+		print("Trying to look right")
+	if Input.is_action_pressed("look_up"):
+		print("Trying to look up")
+	if Input.is_action_pressed("look_down"):
+		print("Trying to look down")
 
-func _input(event):
+func _unhandled_input(event):
 	if event is InputEventMouseMotion:
+		print(event.relative)
 		yaw = max(min(yaw - event.relative.x * SENSITIVITY, 80), -80)
 		pitch = max(min(pitch - event.relative.y * SENSITIVITY, 85), -85)
-		$"..".set_rotation(Vector3(0, deg2rad(yaw), 0))
-		set_rotation(Vector3(deg2rad(pitch), 0, 0))
+#	elif event is InputEventJoypadMotion:
+#		print(event.as_text())
+#		if event.axis == JOY_AXIS_2: # right stick horizontal
+#			yaw = max(min(yaw - event.axis_value * SENSITIVITY, 80), -80)
+#		elif event.axis == JOY_AXIS_3: # right stick vertical
+#			pitch = max(min(pitch - event.axis_value * SENSITIVITY, 85), -85)
+	
+	$"..".set_rotation(Vector3(0, deg2rad(yaw), 0))
+	set_rotation(Vector3(deg2rad(pitch), 0, 0))
 
 func shake(length, magnitude):
 	var time = 0

@@ -160,7 +160,7 @@ draw_pass_1 = SubResource( 9 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0 )
 
 [node name="ExplosionSplat" type="Sprite3D" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, -0.0140349, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0.01, 0 )
 visible = false
 pixel_size = 0.2
 texture = ExtResource( 5 )
