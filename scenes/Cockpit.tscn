@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://graphics/cockpit/cockpit.mesh" type="ArrayMesh" id=2]
@@ -23,7 +23,16 @@ metallic_specular = 0.0
 
 [sub_resource type="QuadMesh" id=2]
 resource_local_to_scene = true
-size = Vector2( 0.3, 0.2 )
+size = Vector2( 0.145, 0.11 )
+
+[sub_resource type="ViewportTexture" id=4]
+viewport_path = NodePath("cockpit/Viewport")
+
+[sub_resource type="SpatialMaterial" id=3]
+resource_local_to_scene = true
+flags_unshaded = true
+flags_do_not_receive_shadows = true
+albedo_texture = SubResource( 4 )
 
 [node name="Cockpit" type="Spatial"]
 script = ExtResource( 1 )
@@ -86,11 +95,22 @@ near = 0.1
 far = 1000.0
 script = ExtResource( 9 )
 
-[node name="TargetingMesh" type="MeshInstance" parent="cockpit"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.173177, -0.93669 )
-visible = false
+[node name="Viewport" type="Viewport" parent="cockpit"]
+size = Vector2( 80, 80 )
+hdr = false
+keep_3d_linear = true
+usage = 3
+render_target_v_flip = true
+
+[node name="Camera" type="Camera" parent="cockpit/Viewport"]
+transform = Transform( -0.97734, 0, 0.211674, 0.0674266, 0.94791, 0.311322, -0.200648, 0.31854, -0.92643, 0.44135, 0.746417, -1.70427 )
+current = true
+
+[node name="LeftDisplay" type="MeshInstance" parent="cockpit"]
+transform = Transform( 1.11001, 0, 0, 0, 1.09848, 0, 0, 0, 1, -0.300723, -0.100422, -0.618722 )
+cast_shadow = 0
 mesh = SubResource( 2 )
-material/0 = null
+material/0 = SubResource( 3 )
 
 [node name="GUI" type="Control" parent="cockpit"]
 margin_right = 40.0

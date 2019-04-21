@@ -129,6 +129,11 @@ func _process(delta):
 		lock_on_timer = 0
 	else: # enemy found
 		$cockpit/GUI.actively_locking_on = true
+		
+		# Set close-up camera position to in front of enemy
+		$cockpit/Viewport/Camera.global_transform.origin = Vector3(-10, 5, 0) + enemy.global_transform.origin + enemy.global_transform.basis.x
+		$cockpit/Viewport/Camera.set_global_transform($cockpit/Viewport/Camera.global_transform.looking_at(enemy.global_transform.origin, $cockpit/Viewport/Camera.global_transform.basis.y))
+		
 		if lock_on_timer < 3 and (enemy.get_node("Center").global_transform.origin - $cockpit/yaw/Camera.global_transform.origin).normalized().dot(-$cockpit/yaw/Camera.global_transform.basis.z) > 0:
 			$"cockpit/GUI/".fully_locked = false
 			# cheap blinking outline effect
