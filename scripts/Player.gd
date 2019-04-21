@@ -68,6 +68,10 @@ func _process(delta):
 	if Input.is_action_just_pressed("change_gun"):
 		if gun < 2: gun += 1
 		else: gun = 0
+		# Update reticle:
+		if gun == 0: # Only draw reticle with cannon
+			$cockpit/GUI.draw_reticle = true
+		else: $cockpit/GUI.draw_reticle = false
 	
 	# Update "cooldowns" / delays
 	if cannon_delay > 0: cannon_delay -= delta
@@ -113,6 +117,7 @@ func _process(delta):
 	# Update HUD
 	$"cockpit/GUI/Indicator".text = str(speed / 2) + " m/s\n" + \
 		gun_name(gun)
+	
 	# Get object
 	# eventually, you will have to check that the currently homing enemy is the same as last frame for lock-on
 	var enemy = null
