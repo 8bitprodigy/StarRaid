@@ -118,42 +118,47 @@ func _process(delta):
 	$"cockpit/GUI/Indicator".text = str(speed / 2) + " m/s\n" + \
 		gun_name(gun)
 	
-	# Get object
-	# eventually, you will have to check that the currently homing enemy is the same as last frame for lock-on
-	var enemy = null
-	for e in get_tree().get_nodes_in_group("enemy"): # get the closest enemy
-		# if we are looking in the direction of the enemy vehicle
-		if not e.dead and (e.get_node("Center").global_transform.origin - $cockpit/yaw/Camera.global_transform.origin).normalized().dot(-$cockpit/yaw/Camera.global_transform.basis.z) > 0:
-			# if no selected enemy OR select nearest enemy
-			if enemy == null or e.global_transform.basis.distance_to(global_transform.basis) < enemy.global_transform.basis.distance_to(global_transform.basis):
-				enemy = e
-	
-	if enemy == null:
-		$cockpit/GUI.actively_locking_on = false
-		$cockpit/GUI.homing_reticle = null # no target found
-		lock_on_timer = 0
-	else: # enemy found
-		$cockpit/GUI.actively_locking_on = true
+	if gun != 0: # Only update lock-on for guns that aren't the cannon
+		# Update lock-on systems
+		# Get object
+		# eventually, you will have to check that the currently homing enemy is the same as last frame for lock-on
+		var enemy = null
+		for e in get_tree().get_nodes_in_group("enemy"): # get the closest enemy
+			# if we are looking in the direction of the enemy vehicle
+			if not e.dead and (e.get_node("Center").global_transform.origin - $cockpit/yaw/Camera.global_transform.origin).normalized().dot(-$cockpit/yaw/Camera.global_transform.basis.z) > 0:
+				# if no selected enemy OR select nearest enemy
+				if enemy == null or e.global_transform.basis.distance_to(global_transform.basis) < enemy.global_transform.basis.distance_to(global_transform.basis):
+					enemy = e
 		
-		# Set close-up camera position to in front of enemy
-		$cockpit/Viewport/Camera.global_transform.origin = Vector3(-10, 5, 0) + enemy.global_transform.origin + enemy.global_transform.basis.x
-		$cockpit/Viewport/Camera.set_global_transform($cockpit/Viewport/Camera.global_transform.looking_at(enemy.global_transform.origin, $cockpit/Viewport/Camera.global_transform.basis.y))
-		
-		if lock_on_timer < 3 and (enemy.get_node("Center").global_transform.origin - $cockpit/yaw/Camera.global_transform.origin).normalized().dot(-$cockpit/yaw/Camera.global_transform.basis.z) > 0:
-			$"cockpit/GUI/".fully_locked = false
-			# cheap blinking outline effect
-			if int(lock_on_timer) % 2 != 0: $cockpit/GUI.homing_reticle = null # turn off reticle for odd numbers
-			else: $cockpit/GUI.homing_reticle = $cockpit/yaw/Camera.unproject_position(enemy.get_node("Center").global_transform.origin)
-			# make sure "beep beep beep ..." audio is playing
-			lock_on_timer += delta
-			pass
-		else: # locked on
-			lock_on_target = enemy
-			# update HUD
-			$"cockpit/GUI/".fully_locked = true
-			# make sure "beeeeeeeeep..." audio is playing
-			# "locked in" reticle around target
-			$cockpit/GUI.homing_reticle = $cockpit/yaw/Camera.unproject_position(enemy.get_node("Center").global_transform.origin)
+		if enemy == null: reset_lockon()
+		else: # enemy found
+			$cockpit/GUI.actively_locking_on = true
+			
+			# Set close-up camera position to in front of enemy
+			$cockpit/Viewport/Camera.global_transform.origin = Vector3(-10, 5, 0) + enemy.global_transform.origin + enemy.global_transform.basis.x
+			$cockpit/Viewport/Camera.set_global_transform($cockpit/Viewport/Camera.global_transform.looking_at(enemy.global_transform.origin, $cockpit/Viewport/Camera.global_transform.basis.y))
+			
+			if lock_on_timer < 3 and (enemy.get_node("Center").global_transform.origin - $cockpit/yaw/Camera.global_transform.origin).normalized().dot(-$cockpit/yaw/Camera.global_transform.basis.z) > 0:
+				$"cockpit/GUI/".fully_locked = false
+				# cheap blinking outline effect
+				if int(lock_on_timer) % 2 != 0: $cockpit/GUI.homing_reticle = null # turn off reticle for odd numbers
+				else: $cockpit/GUI.homing_reticle = $cockpit/yaw/Camera.unproject_position(enemy.get_node("Center").global_transform.origin)
+				# make sure "beep beep beep ..." audio is playing
+				lock_on_timer += delta
+				pass
+			else: # locked on
+				lock_on_target = enemy
+				# update HUD
+				$"cockpit/GUI/".fully_locked = true
+				# make sure "beeeeeeeeep..." audio is playing
+				# "locked in" reticle around target
+				$cockpit/GUI.homing_reticle = $cockpit/yaw/Camera.unproject_position(enemy.get_node("Center").global_transform.origin)
+	else: reset_lockon()
+
+func reset_lockon():
+	$cockpit/GUI.actively_locking_on = false
+	$cockpit/GUI.homing_reticle = null # no target found
+	lock_on_timer = 0
 
 func gun_name(g):
 	match g:
