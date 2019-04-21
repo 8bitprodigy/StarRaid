@@ -132,11 +132,14 @@ func _process(delta):
 		
 		if enemy == null: reset_lockon()
 		else: # enemy found
+			$cockpit/LeftDisplay.visible = true
 			$cockpit/GUI.actively_locking_on = true
 			
 			# Set close-up camera position to in front of enemy
-			$cockpit/Viewport/Camera.global_transform.origin = Vector3(-10, 5, 0) + enemy.global_transform.origin + enemy.global_transform.basis.x
-			$cockpit/Viewport/Camera.set_global_transform($cockpit/Viewport/Camera.global_transform.looking_at(enemy.global_transform.origin, $cockpit/Viewport/Camera.global_transform.basis.y))
+#			$cockpit/Viewport/Camera.global_transform.origin = Vector3(-10, 5, 0) + enemy.global_transform.origin + enemy.global_transform.basis.x
+			$cockpit/Viewport/yaw/Camera.set_global_transform($cockpit/Viewport/yaw/Camera.global_transform.looking_at(enemy.get_node("Center").global_transform.origin, $cockpit/Viewport/yaw/Camera.global_transform.basis.y))
+			$cockpit/Viewport/yaw/Camera.global_transform.origin = Vector3(0, -2, -2.25) + global_transform.origin
+			$cockpit/Viewport/yaw/Camera.fov = 750 / global_transform.origin.distance_to(enemy.global_transform.origin + Vector3(0, 12, 0))
 			
 			if lock_on_timer < 3 and (enemy.get_node("Center").global_transform.origin - $cockpit/yaw/Camera.global_transform.origin).normalized().dot(-$cockpit/yaw/Camera.global_transform.basis.z) > 0:
 				$"cockpit/GUI/".fully_locked = false
@@ -156,6 +159,7 @@ func _process(delta):
 	else: reset_lockon()
 
 func reset_lockon():
+	$cockpit/LeftDisplay.visible = false
 	$cockpit/GUI.actively_locking_on = false
 	$cockpit/GUI.homing_reticle = null # no target found
 	lock_on_timer = 0

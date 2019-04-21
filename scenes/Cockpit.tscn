@@ -102,9 +102,13 @@ keep_3d_linear = true
 usage = 3
 render_target_v_flip = true
 
-[node name="Camera" type="Camera" parent="cockpit/Viewport"]
-transform = Transform( -0.97734, 0, 0.211674, 0.0674266, 0.94791, 0.311322, -0.200648, 0.31854, -0.92643, 0.44135, 0.746417, -1.70427 )
+[node name="yaw" type="Spatial" parent="cockpit/Viewport"]
+
+[node name="Camera" type="Camera" parent="cockpit/Viewport/yaw"]
 current = true
+fov = 179.0
+near = 3.5
+far = 1024.0
 
 [node name="LeftDisplay" type="MeshInstance" parent="cockpit"]
 transform = Transform( 1.11001, 0, 0, 0, 1.09848, 0, 0, 0, 1, -0.300723, -0.100422, -0.618722 )
