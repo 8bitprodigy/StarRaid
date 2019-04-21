@@ -5,7 +5,7 @@ const ENGINE_VOLUME = -10
 
 var speed = 40 # currently in meters per second
 var throttle = 50 # out of 100
-var pitch_add = 1
+var pitch_add = .9
 var roll_add = 2
 var yaw_add = 0.2
 
