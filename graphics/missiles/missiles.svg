@@ -1,0 +1,25 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="64" height="32" viewBox="0 0 64 32"
+     xmlns="http://www.w3.org/2000/svg" version="1.1">
+<desc>'missiles.blend', Cube.001, (Blender 2.79 (sub 0))</desc>
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="42.000,28.000 -0.000,28.000 -0.000,32.000 42.000,32.000 " />
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="42.000,32.000 42.000,28.000 -0.000,28.000 -0.000,32.000 " />
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="42.000,32.000 42.000,28.000 -0.000,28.000 -0.000,32.000 " />
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="40.000,25.000 45.000,20.000 40.000,15.000 35.000,20.000 " />
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="-0.000,28.000 -0.000,32.000 42.000,32.000 42.000,28.000 " />
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="42.000,28.000 42.000,32.000 53.000,30.000 " />
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="8.000,16.000 0.000,26.000 16.000,26.000 " />
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="42.000,28.000 42.000,32.000 53.000,30.000 " />
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="42.000,28.000 42.000,32.000 53.000,30.000 " />
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="42.000,28.000 42.000,32.000 53.000,30.000 " />
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="8.000,16.000 0.000,26.000 16.000,26.000 " />
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="8.000,16.000 0.000,26.000 16.000,26.000 " />
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="8.000,16.000 0.000,26.000 16.000,26.000 " />
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="20.000,24.000 31.000,24.000 31.000,19.000 20.000,19.000 " />
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="31.000,19.000 20.000,19.000 20.000,24.000 31.000,24.000 " />
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="20.000,19.000 20.000,24.000 31.000,24.000 31.000,19.000 " />
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="31.000,24.000 31.000,19.000 20.000,19.000 20.000,24.000 " />
+
+</svg>

@@ -1,0 +1,21 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="64" height="32" viewBox="0 0 64 32"
+     xmlns="http://www.w3.org/2000/svg" version="1.1">
+<desc>'missiles.blend', Cube, (Blender 2.79 (sub 0))</desc>
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="48.000,0.000 0.000,0.000 0.000,4.000 48.000,4.000 " />
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="48.000,4.000 48.000,0.000 0.000,0.000 0.000,4.000 " />
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="48.000,4.000 48.000,0.000 0.000,0.000 0.000,4.000 " />
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="28.000,17.000 33.000,12.000 28.000,7.000 23.000,12.000 " />
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="0.000,0.000 0.000,4.000 48.000,4.000 48.000,0.000 " />
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="48.000,0.000 48.000,4.000 54.000,2.000 " />
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="10.000,13.000 20.000,8.000 0.000,8.000 " />
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="48.000,0.000 48.000,4.000 54.000,2.000 " />
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="48.000,0.000 48.000,4.000 54.000,2.000 " />
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="48.000,0.000 48.000,4.000 54.000,2.000 " />
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="10.000,13.000 20.000,8.000 0.000,8.000 " />
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="10.000,13.000 20.000,8.000 0.000,8.000 " />
+<polygon stroke="black" stroke-width="1" fill="rgb(204, 204, 204)" fill-opacity="0.25" points="10.000,13.000 20.000,8.000 -0.000,8.000 " />
+
+</svg>
