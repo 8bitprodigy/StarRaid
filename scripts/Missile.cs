@@ -26,7 +26,7 @@ public class Missile : KinematicBody
     public override void _PhysicsProcess(float delta)
     {
         // Target locating
-        if (owner != null && owner.lockOnTarget)
+        if (owner != null && owner.lockOnTarget != null)
 
         KinematicCollision collision = MoveAndCollide(velocity * SPEED);
         if (collision != null)

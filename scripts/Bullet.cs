@@ -27,8 +27,8 @@ public class Bullet : KinematicBody
         if (collision != null)
         {
             // Send "hit by this bullet" message to receiver
-            if (((Node)collision.Collider).IsInGroup("enemy"))
-                ((Enemy)collision.Collider).Hit(4);
+            if ((collision.Collider as Node).IsInGroup("enemy"))
+                (collision.Collider as Truck).Hit(4);
 
             QueueFree();
         }
